@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Exit_button.gd" type="Script" id=1]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Node" type="Node" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Node"]
+
+[node name="Main-menu" type="VBoxContainer" parent="Node/CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Node/CanvasLayer/Main-menu"]
+margin_right = 1024.0
+margin_bottom = 197.0
+size_flags_vertical = 7
+text = "Rymd spel :)"
+align = 1
+valign = 1
+
+[node name="Settings-Button" type="Button" parent="Node/CanvasLayer/Main-menu"]
+margin_top = 201.0
+margin_right = 1024.0
+margin_bottom = 398.0
+size_flags_vertical = 3
+text = "Settings"
+
+[node name="Exit-Button" type="Button" parent="Node/CanvasLayer/Main-menu"]
+margin_top = 402.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_vertical = 3
+text = "Exit"
+script = ExtResource( 1 )
+
+[connection signal="pressed" from="Node/CanvasLayer/Main-menu/Exit-Button" to="Node/CanvasLayer/Main-menu/Exit-Button" method="_on_Exitbutton_pressed"]
