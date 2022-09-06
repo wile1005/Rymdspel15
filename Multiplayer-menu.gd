@@ -8,7 +8,7 @@ extends VBoxContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	visible = true
+	visible = false
 	pass # Replace with function body.
 
 
@@ -17,16 +17,11 @@ func _ready():
 #	pass
 
 
-func _on_SettingsButton_pressed():
-	visible = false
-	pass # Replace with function body.
-
-
-func _on_BackButton_pressed():
+func _on_MultiplayerButton_pressed():
 	visible = true
 	pass # Replace with function body.
 
 
-func _on_MultiplayerButton_pressed():
+func _on_BackButton_pressed():
 	visible = false
 	pass # Replace with function body.
