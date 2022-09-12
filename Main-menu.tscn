@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Exit_button.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/SettingsButton.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Main-menu.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Fullscreen-Button.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/Multiplayer-menu.gd" type="Script" id=5]
+[ext_resource path="res://ConnectionII.tres" type="DynamicFont" id=6]
 
 [node name="Main menu" type="Node2D"]
 
@@ -15,66 +16,83 @@ __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="ColorRect" type="ColorRect" parent="Node/CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.109804, 0.109804, 0.109804, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Main-menu" type="VBoxContainer" parent="Node/CanvasLayer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="Node/CanvasLayer/Main-menu"]
-margin_right = 1024.0
-margin_bottom = 147.0
+margin_right = 1920.0
+margin_bottom = 267.0
 size_flags_vertical = 7
-text = "Rymdspel :)"
+custom_fonts/font = ExtResource( 6 )
+text = "Rymdspel 15"
 align = 1
 valign = 1
 
 [node name="Multiplayer-Button" type="Button" parent="Node/CanvasLayer/Main-menu"]
-margin_top = 151.0
-margin_right = 1024.0
-margin_bottom = 298.0
+margin_top = 271.0
+margin_right = 1920.0
+margin_bottom = 538.0
+hint_tooltip = "AAAAAAAAAAAAAAAAAA"
 size_flags_vertical = 3
+custom_fonts/font = ExtResource( 6 )
 text = "Multiplayer"
 
 [node name="Settings-Button" type="Button" parent="Node/CanvasLayer/Main-menu"]
-margin_top = 302.0
-margin_right = 1024.0
-margin_bottom = 449.0
+margin_top = 542.0
+margin_right = 1920.0
+margin_bottom = 809.0
 size_flags_vertical = 3
+custom_fonts/font = ExtResource( 6 )
 text = "Settings"
 
 [node name="Exit-Button" type="Button" parent="Node/CanvasLayer/Main-menu"]
-margin_top = 453.0
-margin_right = 1024.0
-margin_bottom = 600.0
+margin_top = 813.0
+margin_right = 1920.0
+margin_bottom = 1080.0
 size_flags_vertical = 3
+custom_fonts/font = ExtResource( 6 )
 text = "Exit"
 script = ExtResource( 1 )
 
 [node name="Settings-menu" type="VBoxContainer" parent="Node/CanvasLayer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
 
 [node name="GridContainer" type="GridContainer" parent="Node/CanvasLayer/Settings-menu"]
-margin_right = 1024.0
-margin_bottom = 197.0
+margin_right = 1920.0
+margin_bottom = 357.0
 size_flags_vertical = 3
 columns = 2
 
 [node name="Label" type="Label" parent="Node/CanvasLayer/Settings-menu/GridContainer"]
-margin_right = 510.0
-margin_bottom = 63.0
+margin_right = 958.0
+margin_bottom = 116.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
+custom_fonts/font = ExtResource( 6 )
 text = "Sound Volume"
 align = 1
 valign = 1
 
 [node name="HSlider" type="HSlider" parent="Node/CanvasLayer/Settings-menu/GridContainer"]
-margin_left = 514.0
-margin_right = 1024.0
-margin_bottom = 63.0
+margin_left = 962.0
+margin_right = 1920.0
+margin_bottom = 116.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -82,20 +100,21 @@ __meta__ = {
 }
 
 [node name="Label2" type="Label" parent="Node/CanvasLayer/Settings-menu/GridContainer"]
-margin_top = 67.0
-margin_right = 510.0
-margin_bottom = 130.0
+margin_top = 120.0
+margin_right = 958.0
+margin_bottom = 236.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
+custom_fonts/font = ExtResource( 6 )
 text = "Music Volume "
 align = 1
 valign = 1
 
 [node name="HSlider2" type="HSlider" parent="Node/CanvasLayer/Settings-menu/GridContainer"]
-margin_left = 514.0
-margin_top = 67.0
-margin_right = 1024.0
-margin_bottom = 130.0
+margin_left = 962.0
+margin_top = 120.0
+margin_right = 1920.0
+margin_bottom = 236.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -103,20 +122,21 @@ __meta__ = {
 }
 
 [node name="Label3" type="Label" parent="Node/CanvasLayer/Settings-menu/GridContainer"]
-margin_top = 134.0
-margin_right = 510.0
-margin_bottom = 197.0
+margin_top = 240.0
+margin_right = 958.0
+margin_bottom = 356.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
+custom_fonts/font = ExtResource( 6 )
 text = "Voicechat Volume "
 align = 1
 valign = 1
 
 [node name="HSlider3" type="HSlider" parent="Node/CanvasLayer/Settings-menu/GridContainer"]
-margin_left = 514.0
-margin_top = 134.0
-margin_right = 1024.0
-margin_bottom = 197.0
+margin_left = 962.0
+margin_top = 240.0
+margin_right = 1920.0
+margin_bottom = 356.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -124,24 +144,26 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Node/CanvasLayer/Settings-menu"]
-margin_top = 201.0
-margin_right = 1024.0
-margin_bottom = 398.0
+margin_top = 361.0
+margin_right = 1920.0
+margin_bottom = 718.0
 size_flags_vertical = 3
 
 [node name="Fullscreen-Button" type="CheckButton" parent="Node/CanvasLayer/Settings-menu/HBoxContainer"]
-margin_right = 1024.0
-margin_bottom = 197.0
+margin_right = 1920.0
+margin_bottom = 357.0
 size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 6 )
 text = "Fullscreen"
 align = 1
 script = ExtResource( 4 )
 
 [node name="Back-Button" type="Button" parent="Node/CanvasLayer/Settings-menu"]
-margin_top = 402.0
-margin_right = 1024.0
-margin_bottom = 600.0
+margin_top = 722.0
+margin_right = 1920.0
+margin_bottom = 1080.0
 size_flags_vertical = 3
+custom_fonts/font = ExtResource( 6 )
 text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -152,12 +174,65 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Back-Button" type="Button" parent="Node/CanvasLayer/Multiplayer-menu"]
-margin_right = 1024.0
-margin_bottom = 600.0
+[node name="Multiplayer_configure" type="Control" parent="Node/CanvasLayer/Multiplayer-menu"]
+margin_right = 1920.0
+
+[node name="server_ip_adress" type="LineEdit" parent="Node/CanvasLayer/Multiplayer-menu/Multiplayer_configure"]
+margin_top = 4.0
+margin_right = 1920.0
+margin_bottom = 270.0
 size_flags_vertical = 3
+custom_fonts/font = ExtResource( 6 )
+align = 1
+placeholder_text = "Enter ip adress"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Node/CanvasLayer/Multiplayer-menu/Multiplayer_configure"]
+margin_top = 274.0
+margin_right = 1920.0
+margin_bottom = 540.0
+size_flags_vertical = 3
+
+[node name="Create_server" type="Button" parent="Node/CanvasLayer/Multiplayer-menu/Multiplayer_configure/HBoxContainer"]
+margin_right = 958.0
+margin_bottom = 266.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 6 )
+text = "Create Server"
+
+[node name="Join_server" type="Button" parent="Node/CanvasLayer/Multiplayer-menu/Multiplayer_configure/HBoxContainer"]
+margin_left = 962.0
+margin_right = 1920.0
+margin_bottom = 266.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 6 )
+text = "Join Server"
+
+[node name="Back-Button" type="Button" parent="Node/CanvasLayer/Multiplayer-menu/Multiplayer_configure"]
+margin_top = 544.0
+margin_right = 1920.0
+margin_bottom = 810.0
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 6 )
 text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Devic_ip_adress" type="Label" parent="Node/CanvasLayer/Multiplayer-menu/Multiplayer_configure"]
+margin_top = 940.0
+margin_right = 1920.0
+margin_bottom = 954.0
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 6 )
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -170,6 +245,8 @@ __meta__ = {
 [connection signal="toggled" from="Node/CanvasLayer/Settings-menu/HBoxContainer/Fullscreen-Button" to="Node/CanvasLayer/Settings-menu/HBoxContainer/Fullscreen-Button" method="_on_FullscreenButton_toggled"]
 [connection signal="pressed" from="Node/CanvasLayer/Settings-menu/Back-Button" to="Node/CanvasLayer/Main-menu" method="_on_BackButton_pressed"]
 [connection signal="pressed" from="Node/CanvasLayer/Settings-menu/Back-Button" to="Node/CanvasLayer/Settings-menu" method="_on_BackButton_pressed"]
-[connection signal="pressed" from="Node/CanvasLayer/Multiplayer-menu/Back-Button" to="Node/CanvasLayer/Main-menu" method="_on_BackButton_pressed"]
-[connection signal="pressed" from="Node/CanvasLayer/Multiplayer-menu/Back-Button" to="Node/CanvasLayer/Settings-menu" method="_on_BackButton_pressed"]
-[connection signal="pressed" from="Node/CanvasLayer/Multiplayer-menu/Back-Button" to="Node/CanvasLayer/Multiplayer-menu" method="_on_BackButton_pressed"]
+[connection signal="pressed" from="Node/CanvasLayer/Multiplayer-menu/Multiplayer_configure/HBoxContainer/Create_server" to="Node/CanvasLayer/Multiplayer-menu" method="_on_Create_server_pressed"]
+[connection signal="pressed" from="Node/CanvasLayer/Multiplayer-menu/Multiplayer_configure/HBoxContainer/Join_server" to="Node/CanvasLayer/Multiplayer-menu" method="_on_Join_server_pressed"]
+[connection signal="pressed" from="Node/CanvasLayer/Multiplayer-menu/Multiplayer_configure/Back-Button" to="Node/CanvasLayer/Main-menu" method="_on_BackButton_pressed"]
+[connection signal="pressed" from="Node/CanvasLayer/Multiplayer-menu/Multiplayer_configure/Back-Button" to="Node/CanvasLayer/Settings-menu" method="_on_BackButton_pressed"]
+[connection signal="pressed" from="Node/CanvasLayer/Multiplayer-menu/Multiplayer_configure/Back-Button" to="Node/CanvasLayer/Multiplayer-menu" method="_on_BackButton_pressed"]
