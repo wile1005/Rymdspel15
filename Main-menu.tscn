@@ -45,7 +45,6 @@ valign = 1
 margin_top = 271.0
 margin_right = 1920.0
 margin_bottom = 538.0
-hint_tooltip = "AAAAAAAAAAAAAAAAAA"
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 6 )
 text = "Multiplayer"
