@@ -5,7 +5,7 @@ const speed = 300
 var velocity = Vector2(0, 0)
 
 puppet var puppet_position = Vector2(0,0) setget puppet_position_set
-
+puppet var puppet_velocity = Vector2()
 onready var tween = $Tween
 
 func _process(delta: float) -> void:
@@ -16,6 +16,11 @@ func _process(delta: float) -> void:
 		velocity = Vector2(x_input, y_input).normalized()
 		
 		move_and_slide(velocity * speed)
+		
+	else:
+		
+		if not tween.is_active():
+			move_and_slide(puppet_velocity * speed)
 
 func puppet_position_set(new_value) -> void:
 	puppet_position = new_value
@@ -26,3 +31,4 @@ func puppet_position_set(new_value) -> void:
 func _on_Network_tick_rate_timeout():
 	if is_network_master():
 		rset_unreliable("puppet_position", global_position)
+		rset_unreliable("puppet_velocity", velocity)

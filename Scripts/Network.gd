@@ -17,7 +17,7 @@ func _ready():
 		ip_adress = IP.get_local_addresses()[3]
 	
 	for ip in IP.get_local_addresses():
-		if ip.begins_with("192.126."):
+		if ip.begins_with("192.126.") and not ip.ends_with(".1"):
 			ip_adress = ip
 	
 	get_tree().connect("connected_to_server", self, "_connected_to_server")
