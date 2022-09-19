@@ -42,6 +42,7 @@ func _on_Join_server_pressed():
 		Network.join_server()
 
 func _connected_to_server() -> void:
+	print("Joined")
 	yield(get_tree().create_timer(0.1), "timeout")
 	instance_player(get_tree().get_network_unique_id())
 
