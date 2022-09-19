@@ -10,8 +10,8 @@ onready var tween = $Tween
 
 func _process(delta: float) -> void:
 	if is_network_master():
-		var x_input = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
-		var y_input = int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))
+		var x_input = int(Input.is_action_pressed("Right")) - int(Input.is_action_pressed("Left"))
+		var y_input = int(Input.is_action_pressed("Down")) - int(Input.is_action_pressed("Up"))
 		
 		velocity = Vector2(x_input, y_input).normalized()
 		
