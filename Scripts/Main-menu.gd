@@ -2,9 +2,8 @@ extends CanvasLayer
 
 
 func _ready():
-	$Main_menu.visible = true
+	$Main_menu.visible = false
 	$Settings_menu.visible = false
-	$Multiplayer_menu.visible = false
 	$ColorRect.visible = true
 	pass 
 
@@ -31,17 +30,4 @@ func _on_BackButton_pressed():
 	$Main_menu.visible = true
 	$Settings_menu.visible = false
 	$Multiplayer_menu.visible = false
-	pass # Replace with function body.
-
-
-func _on_Create_server_pressed():
-	$Main_menu.visible = false
-	$Settings_menu.visible = false
-	$Multiplayer_menu.visible = false
-	$ColorRect.visible = false
-	pass # Replace with function body.
-
-
-func _on_Join_server_pressed():
-	$ColorRect.visible = false
 	pass # Replace with function body.

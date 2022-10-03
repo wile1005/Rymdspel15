@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="Gymnasieproject"
-run/main_scene="res://Main-menu.tscn"
+run/main_scene="res://Network_setup.tscn"
 config/icon="res://icon.png"
 
 [autoload]

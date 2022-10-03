@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ConnectionII.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scripts/Server_browser.gd" type="Script" id=2]
+[ext_resource path="res://Server_lister.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -54,11 +56,12 @@ tracks/0/keys = {
 [node name="Server_browser" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background-panel" type="Panel" parent="."]
+[node name="Background_panel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 96.0
@@ -69,7 +72,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Manual_setup" type="Button" parent="Background-panel"]
+[node name="Manual_setup" type="Button" parent="Background_panel"]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -85,7 +88,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Go_back" type="Button" parent="Background-panel"]
+[node name="Go_back" type="Button" parent="Background_panel"]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 30.0
@@ -99,7 +102,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Server_ip_text_edit" type="LineEdit" parent="Background-panel"]
+[node name="Server_ip_text_edit" type="LineEdit" parent="Background_panel"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -114,7 +117,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Type_in_server_ip" type="Label" parent="Background-panel/Server_ip_text_edit"]
+[node name="Type_in_server_ip" type="Label" parent="Background_panel/Server_ip_text_edit"]
 anchor_right = 1.0
 margin_top = -105.0
 custom_fonts/font = ExtResource( 1 )
@@ -126,7 +129,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Join_server" type="Button" parent="Background-panel/Server_ip_text_edit"]
+[node name="Join_server" type="Button" parent="Background_panel/Server_ip_text_edit"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -142,7 +145,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background-panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Background_panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 70.0
@@ -153,7 +156,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Searching_for_servers" type="Label" parent="Background-panel/VBoxContainer"]
+[node name="Searching_for_servers" type="Label" parent="Background_panel/VBoxContainer"]
 margin_right = 1588.0
 margin_bottom = 70.0
 rect_min_size = Vector2( 0, 70 )
@@ -163,15 +166,20 @@ text = "Searching for servers
 align = 1
 valign = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Background-panel/VBoxContainer/Searching_for_servers"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background_panel/VBoxContainer/Searching_for_servers"]
 autoplay = "Searching"
 anims/RESET = SubResource( 1 )
 anims/Searching = SubResource( 2 )
 
-[node name="Server_browser_label" type="Label" parent="Background-panel"]
+[node name="Server_browser_label" type="Label" parent="Background_panel"]
 anchor_right = 1.0
 margin_top = -176.0
 custom_fonts/font = ExtResource( 1 )
 text = "Server Browser"
 align = 1
 valign = 1
+
+[node name="Server_lister" parent="." instance=ExtResource( 3 )]
+
+[connection signal="new_server" from="Server_lister" to="." method="_on_Server_lister_new_server"]
+[connection signal="remove_server" from="Server_lister" to="." method="_on_Server_lister_remove_server"]

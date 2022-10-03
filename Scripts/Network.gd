@@ -7,6 +7,7 @@ var server = null
 var client = null
 
 var ip_address = ""
+var current_player_username = ""
 
 func _ready():
 	if OS.get_name() == "Windows":

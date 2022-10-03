@@ -1,14 +1,13 @@
-extends VBoxContainer
+extends Control
 
 var player = load("res://Player.tscn")
 
 onready var multiplayer_config_ui = $Multiplayer_configure
-onready var server_ip_address = $Multiplayer_configure/server_ip_adress
+onready var username_text_edit = $Multiplayer_configure/Username_text_edit
 
-onready var device_ip_address = $Multiplayer_configure/Devic_ip_adress
+onready var device_ip_address = $CanvasLayer/Devic_ip_adress
 
 func _ready() -> void:
-	visible = false
 	get_tree().connect("network_peer_connected", self, "_player_connected")
 	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
 	get_tree().connect("connected_to_server", self, "_connected_to_server")
@@ -26,20 +25,21 @@ func _player_disconnected(id) -> void:
 	if Players.has_node(str(id)):
 		Players.get_node(str(id)).queue_free()
 
-
-
 func _on_Create_server_pressed():
-	multiplayer_config_ui.hide()
-	Network.create_server()
+	if username_text_edit != "":
+		Network.current_player_username = username_text_edit
+		multiplayer_config_ui.hide()
+		Network.create_server()
 	
-	instance_player(get_tree().get_network_unique_id())
-
+		instance_player(get_tree().get_network_unique_id())
 
 func _on_Join_server_pressed():
-	if server_ip_address.text != "":
+	if username_text_edit.text != "":
 		multiplayer_config_ui.hide()
-		Network.ip_address = server_ip_address.text
-		Network.join_server()
+		username_text_edit.hide()
+		
+		Global.instance_node(load("res://Server_browser.tscn"), self)
+
 
 func _connected_to_server() -> void:
 	print("joined")

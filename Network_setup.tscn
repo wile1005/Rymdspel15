@@ -1,0 +1,66 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ConnectionII.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scripts/Multiplayer-menu.gd" type="Script" id=2]
+
+[node name="Network_setup" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Multiplayer_configure" type="Control" parent="."]
+
+[node name="Create_server" type="Button" parent="Multiplayer_configure"]
+margin_top = 274.0
+margin_right = 958.0
+margin_bottom = 540.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Create Server"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Join_server" type="Button" parent="Multiplayer_configure"]
+margin_left = 962.0
+margin_top = 274.0
+margin_right = 1920.0
+margin_bottom = 540.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Join Server"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Username_text_edit" type="LineEdit" parent="Multiplayer_configure"]
+margin_top = 4.0
+margin_right = 1920.0
+margin_bottom = 270.0
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+align = 1
+placeholder_text = "Enter username"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Devic_ip_adress" type="Label" parent="CanvasLayer"]
+margin_top = 940.0
+margin_right = 1920.0
+margin_bottom = 970.0
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 1 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Multiplayer_configure/Create_server" to="." method="_on_Create_server_pressed"]
+[connection signal="pressed" from="Multiplayer_configure/Join_server" to="." method="_on_Join_server_pressed"]
