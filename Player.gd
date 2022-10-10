@@ -1,10 +1,10 @@
 extends KinematicBody2D
 
-const speed = 300
+const speed = 400
 
 var velocity = Vector2(0, 0)
 
-puppet var puppet_position = Vector2(0,0) setget puppet_position_set
+puppet var puppet_position = Vector2(0, 0) setget puppet_position_set
 puppet var puppet_velocity = Vector2()
 onready var tween = $Tween
 
