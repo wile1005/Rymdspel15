@@ -26,7 +26,7 @@ func _player_disconnected(id) -> void:
 		Players.get_node(str(id)).queue_free()
 
 func _on_Create_server_pressed():
-	if username_text_edit != "":
+	if username_text_edit.text != "":
 		Network.current_player_username = username_text_edit
 		multiplayer_config_ui.hide()
 		Network.create_server()
