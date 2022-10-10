@@ -16,8 +16,8 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Network="*res://Scripts/Network.gd"
-Global="*res://Scripts/Global.gd"
+Network="*res://Network.gd"
+Global="*res://Global.gd"
 Players="*res://Players.tscn"
 
 [display]
