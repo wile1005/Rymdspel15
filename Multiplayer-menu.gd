@@ -22,8 +22,8 @@ func _player_connected(id) -> void:
 func _player_disconnected(id) -> void:
 	print("Player " + str(id) + " has disconnected")
 	
-	if Players.has_node(str(id)):
-		Players.get_node(str(id)).queue_free()
+	if Persistent_nodes.has_node(str(id)):
+		Persistent_nodes.get_node(str(id)).queue_free()
 
 func _on_Create_server_pressed():
 	if username_text_edit.text != "":
@@ -47,7 +47,7 @@ func _connected_to_server() -> void:
 	instance_player(get_tree().get_network_unique_id())
 
 func instance_player(id) -> void:
-	var player_instance = Global.instance_node_at_location(player, Players, Vector2(rand_range(0, 1920), rand_range(0,1080)))
+	var player_instance = Global.instance_node_at_location(player, Persistent_nodes, Vector2(rand_range(0, 1920), rand_range(0,1080)))
 	player_instance.name = str(id)
 	player_instance.set_network_master(id)
 
@@ -61,3 +61,5 @@ func _on_BackButton_pressed():
 	visible = false
 	pass 
 
+func _on_Start_game_pressed():
+	pass # Replace with function body.

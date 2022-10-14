@@ -18,7 +18,7 @@ config/icon="res://icon.png"
 
 Network="*res://Network.gd"
 Global="*res://Global.gd"
-Players="*res://Players.tscn"
+Persistent_nodes="*res://Persistent_nodes.tscn"
 
 [display]
 

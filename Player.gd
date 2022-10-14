@@ -17,6 +17,7 @@ func _process(delta: float) -> void:
 		
 		move_and_slide(velocity * speed)
 		
+		$Camera2D.current=true
 	else:
 		
 		if not tween.is_active():

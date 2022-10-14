@@ -62,5 +62,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Start_game" type="Button" parent="CanvasLayer"]
+margin_left = 27.0
+margin_top = 27.0
+margin_right = 391.0
+margin_bottom = 158.0
+custom_fonts/font = ExtResource( 1 )
+text = "Start game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="Multiplayer_configure/Create_server" to="." method="_on_Create_server_pressed"]
 [connection signal="pressed" from="Multiplayer_configure/Join_server" to="." method="_on_Join_server_pressed"]
+[connection signal="pressed" from="CanvasLayer/Start_game" to="." method="_on_Start_game_pressed"]
