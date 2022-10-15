@@ -6,6 +6,7 @@ onready var multiplayer_config_ui = $Multiplayer_configure
 onready var username_text_edit = $Multiplayer_configure/Username_text_edit
 
 onready var device_ip_address = $CanvasLayer/Devic_ip_adress
+onready var start_game = $CanvasLayer/Start_game
 
 func _ready() -> void:
 	get_tree().connect("network_peer_connected", self, "_player_connected")
@@ -13,6 +14,18 @@ func _ready() -> void:
 	get_tree().connect("connected_to_server", self, "_connected_to_server")
 	
 	device_ip_address.text = Network.ip_address
+	
+	if get_tree().network_peer != null:
+		pass
+	else:
+		start_game.hide()
+
+func _process(delta):
+	if get_tree().network_peer != null:
+		if get_tree().get_network_connected_peers().size() >= 1 and get_tree().is_network_server():
+			start_game.show()
+		else:
+			start_game.hide()
 
 func _player_connected(id) -> void:
 	print("Player " + str(id) + " has connected")
@@ -62,4 +75,7 @@ func _on_BackButton_pressed():
 	pass 
 
 func _on_Start_game_pressed():
-	pass # Replace with function body.
+	rpc("switch_to_game")
+
+sync func switch_to_game() -> void:
+	get_tree().change_scene("res://Game.tscn")
