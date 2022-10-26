@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Gun.png-e8d0e9da17888b53fcf23b6b77187344.stex"
+path="res://.import/Player-down.png-92b0d32e1186d8f66bcd6ea23352ea64.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Gun.png"
-dest_files=[ "res://.import/Gun.png-e8d0e9da17888b53fcf23b6b77187344.stex" ]
+source_file="res://Sprites/Player-down.png"
+dest_files=[ "res://.import/Player-down.png-92b0d32e1186d8f66bcd6ea23352ea64.stex" ]
 
 [params]
 
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

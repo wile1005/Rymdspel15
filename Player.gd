@@ -2,12 +2,14 @@ extends KinematicBody2D
 
 const speed = 200
 
+var hp = 100 setget set_hp
 var velocity = Vector2(0, 0)
 var can_shoot = true
 var is_reloading = false
 
 var bullet = load("res://Bullet.tscn")
 
+puppet var puppet_hp = 100 setget puppet_hp_set
 puppet var puppet_position = Vector2(0, 0) setget puppet_position_set
 puppet var puppet_velocity = Vector2()
 puppet var puppet_rotation = 0
@@ -16,11 +18,21 @@ onready var tween = $Tween
 onready var sprite = $Sprite
 onready var reload_timer = $Reload_timer
 onready var shoot_point = $Rotator/Shoot_point
+onready var hit_timer = $Hit_timer
 
 func _process(delta: float) -> void:
 	if is_network_master():
 		var x_input = int(Input.is_action_pressed("Right")) - int(Input.is_action_pressed("Left"))
 		var y_input = int(Input.is_action_pressed("Down")) - int(Input.is_action_pressed("Up"))
+		
+		if Input.is_action_pressed("Down"):
+			$Sprite.texture = load("res://Sprites/Player-down.png")
+		elif(Input.is_action_pressed("Up")):
+			$Sprite.texture = load("res://Sprites/Player-up.png")
+		elif(Input.is_action_pressed("Right")):
+			$Sprite.texture = load("res://Sprites/Player-right.png")
+		elif(Input.is_action_pressed("Left")):
+			$Sprite.texture = load("res://Sprites/Player-left.png")
 		
 		velocity = Vector2(x_input, y_input).normalized()
 		
@@ -46,6 +58,18 @@ func puppet_position_set(new_value) -> void:
 	tween.interpolate_property(self, "global_position", global_position, puppet_position, 0.1)
 	tween.start()
 
+func set_hp(new_value):
+	hp = new_value
+	
+	if is_network_master():
+		rset("puppet_hp", hp)
+
+func puppet_hp_set(new_value):
+	puppet_hp = new_value
+	
+	if not is_network_master():
+		hp = puppet_hp
+
 func _on_Network_tick_rate_timeout():
 	if is_network_master():
 		rset_unreliable("puppet_position", global_position)
@@ -63,3 +87,15 @@ sync func instance_bullet(id):
 
 func _on_Reload_timer_timeout():
 	is_reloading = false
+
+
+func _on_Hit_timer_timeout():
+	pass # Replace with function body.
+
+
+func _on_Hitbox_area_entered(area):
+	if get_tree().is_network_server():
+		if area.is_in_group("Player_damager") and area.get_parent().player_owner != get_tree().get_network_unique_id():
+			 rpc("hit_by_damager", area.get_parent().damage)
+			
+			#fortsätthärrsenare

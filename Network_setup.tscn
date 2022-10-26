@@ -7,6 +7,9 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Multiplayer_configure" type="Control" parent="."]
 
@@ -45,6 +48,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Button" type="Button" parent="Multiplayer_configure"]
+margin_top = 545.0
+margin_right = 1920.0
+margin_bottom = 793.0
+custom_fonts/font = ExtResource( 1 )
+text = "Exit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Devic_ip_adress" type="Label" parent="CanvasLayer"]
@@ -60,16 +73,13 @@ __meta__ = {
 }
 
 [node name="Start_game" type="Button" parent="CanvasLayer"]
-margin_left = 27.0
-margin_top = 27.0
-margin_right = 391.0
-margin_bottom = 158.0
-custom_fonts/font = ExtResource( 1 )
-text = "Start game"
+margin_right = 351.0
+margin_bottom = 96.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [connection signal="pressed" from="Multiplayer_configure/Create_server" to="." method="_on_Create_server_pressed"]
 [connection signal="pressed" from="Multiplayer_configure/Join_server" to="." method="_on_Join_server_pressed"]
+[connection signal="pressed" from="Multiplayer_configure/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Start_game" to="." method="_on_Start_game_pressed"]

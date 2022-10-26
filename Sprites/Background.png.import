@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Gun.png-e8d0e9da17888b53fcf23b6b77187344.stex"
+path="res://.import/Background.png-35d93eb57723ae0fb58ad0b59abe54b6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Gun.png"
-dest_files=[ "res://.import/Gun.png-e8d0e9da17888b53fcf23b6b77187344.stex" ]
+source_file="res://Sprites/Background.png"
+dest_files=[ "res://.import/Background.png-35d93eb57723ae0fb58ad0b59abe54b6.stex" ]
 
 [params]
 
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

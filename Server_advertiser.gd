@@ -24,13 +24,12 @@ func broadcast():
 	server_info.name = Network.current_player_username
 	var packet_message = to_json(server_info)
 	var packet = packet_message.to_ascii()
-	socket_udp.put_packet(packet) #vet inte om detta funkade
+	socket_udp.put_packet(packet)
 
 func _exit_tree():
 	broadcast_timer.stop()
 	if socket_udp != null:
 		socket_udp.close()
-
 
 
 
