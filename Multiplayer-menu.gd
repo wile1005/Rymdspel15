@@ -77,7 +77,13 @@ func _on_BackButton_pressed():
 func _on_Start_game_pressed():
 	rpc("switch_to_game")
 
+
+
 sync func switch_to_game() -> void:
+	for child in Persistent_nodes.get_children():
+		if child.is_in_group("Player"):
+			child.update_shoot_mode(true)
+	
 	get_tree().change_scene("res://Game.tscn")
 
 
