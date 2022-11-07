@@ -117,5 +117,5 @@ func _on_Hitbox_area_entered(area):
 
 sync func hit_by_damager(damage):
 	hp -= damage
-	modulate = Color(5, 5, 5, 1)
+	modulate = Color(5, 0, 0, 1)
 	hit_timer.start()
