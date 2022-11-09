@@ -21,6 +21,14 @@ func _ready() -> void:
 		start_game.hide()
 
 func _process(delta):
+	if Input.is_action_just_pressed("Fullscreen") and OS.window_fullscreen == true:
+		yield(get_tree().create_timer(0.1), "timeout")
+		OS.window_fullscreen = false
+		
+	elif Input.is_action_just_pressed("Fullscreen") and OS.window_fullscreen == false:
+		yield(get_tree().create_timer(0.1), "timeout")
+		OS.window_fullscreen = true
+		
 	if get_tree().network_peer != null:
 		if get_tree().get_network_connected_peers().size() >= 1 and get_tree().is_network_server():
 			start_game.show()
@@ -36,6 +44,7 @@ func _player_disconnected(id) -> void:
 	print("Player " + str(id) + " has disconnected")
 	
 	if Persistent_nodes.has_node(str(id)):
+		Persistent_nodes.get_node(str(id)).username_text_instance.queue_free()
 		Persistent_nodes.get_node(str(id)).queue_free()
 
 func _on_Create_server_pressed():
@@ -63,6 +72,7 @@ func instance_player(id) -> void:
 	var player_instance = Global.instance_node_at_location(player, Persistent_nodes, Vector2(rand_range(0, 1920), rand_range(0,1080)))
 	player_instance.name = str(id)
 	player_instance.set_network_master(id)
+	player_instance.username = username_text_edit.text
 
 
 func _on_MultiplayerButton_pressed():

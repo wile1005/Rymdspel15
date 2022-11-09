@@ -8,11 +8,16 @@ var can_shoot = true
 var is_reloading = false
 
 var bullet = load("res://Bullet.tscn")
+var username_text = load("res://Username_text.tscn")
+
+var username setget username_set
+var username_text_instance = null
 
 puppet var puppet_hp = 100 setget puppet_hp_set
 puppet var puppet_position = Vector2(0, 0) setget puppet_position_set
 puppet var puppet_velocity = Vector2()
 puppet var puppet_rotation = 0
+puppet var puppet_username = "" setget puppet_username_set
 
 onready var tween = $Tween
 onready var sprite = $Sprite
@@ -21,9 +26,17 @@ onready var shoot_point = $Rotator/Shoot_point
 onready var hit_timer = $Hit_timer
 
 func _ready():
+	get_tree().connect("network_peer_connected", self, "_network_peer_connected")
+	
+	username_text_instance = Global.instance_node_at_location(username_text, Persistent_nodes, global_position)
+	username_text_instance.player_following = self
+	
 	update_shoot_mode(false)
 
 func _process(delta: float) -> void:
+	if username_text_instance != null:
+		username_text_instance.name = "username" + name
+	
 	if is_network_master():
 		var x_input = int(Input.is_action_pressed("Right")) - int(Input.is_action_pressed("Left"))
 		var y_input = int(Input.is_action_pressed("Down")) - int(Input.is_action_pressed("Up"))
@@ -58,6 +71,13 @@ func _process(delta: float) -> void:
 		
 		if not tween.is_active():
 			move_and_slide(puppet_velocity * speed)
+	
+	if hp <= 0:
+		if username_text_instance != null:
+			username_text_instance.visible = false
+		
+		if get_tree().is_network_server():
+			rpc("destroy")
 
 func puppet_position_set(new_value) -> void:
 	puppet_position = new_value
@@ -77,6 +97,22 @@ func puppet_hp_set(new_value):
 	
 	if not is_network_master():
 		hp = puppet_hp
+
+func username_set(new_value) -> void:
+	username = new_value
+	
+	if is_network_master() and username_text_instance != null:
+		username_text_instance.text = username
+		rset("puppet_username",username)
+
+func puppet_username_set(new_value) -> void:
+	puppet_username = new_value
+	
+	if not is_network_master() and username_text_instance != null:
+		username_text_instance.text = puppet_username
+
+func _network_peer_connected(id) -> void:
+	rset_id(id, "puppet_username", username)
 
 func _on_Network_tick_rate_timeout():
 	if is_network_master():
@@ -119,3 +155,10 @@ sync func hit_by_damager(damage):
 	hp -= damage
 	modulate = Color(5, 0, 0, 1)
 	hit_timer.start()
+
+sync func destroy() -> void:
+	update_shoot_mode(false)
+	username_text_instance.visible = false
+	visible = false
+	$CollisionShape2D.disabled = true
+	$Hitbox/CollisionShape2D.disabled = true
