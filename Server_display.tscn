@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://ConnectionII.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Font Large.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Server_display.gd" type="Script" id=2]
 
 [node name="Server_display" type="Label" groups=["Server_display"]]

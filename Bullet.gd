@@ -36,6 +36,9 @@ func _process(delta: float) -> void:
 			rotation = puppet_rotation
 			global_position += puppet_velocity * speed * delta
 
+func _on_CollisionShape2D_enter(body):
+	rpc("destroy")
+
 func puppet_position_set(new_value) -> void:
 	puppet_position = new_value
 	global_position = puppet_position

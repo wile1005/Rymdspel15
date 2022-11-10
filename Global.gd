@@ -9,3 +9,10 @@ func instance_node(node: Object, parent: Object) -> Object:
 	var node_instance = node.instance()
 	parent.add_child(node_instance)
 	return node_instance
+
+func _process(delta):
+	if Input.is_action_just_pressed("Fullscreen") and OS.window_fullscreen == true:
+		OS.window_fullscreen = false
+		
+	elif Input.is_action_just_pressed("Fullscreen") and OS.window_fullscreen == false:
+		OS.window_fullscreen = true

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://ConnectionII.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Font Large.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Multiplayer-menu.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/Background.png" type="Texture" id=3]
 
 [node name="Network_setup" type="Control"]
 anchor_left = 0.5
@@ -23,33 +24,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Create_server" type="Button" parent="Multiplayer_configure"]
-margin_top = 274.0
-margin_right = 958.0
-margin_bottom = 540.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 1 )
-text = "Create Server"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Join_server" type="Button" parent="Multiplayer_configure"]
-margin_left = 962.0
-margin_top = 274.0
-margin_right = 1920.0
-margin_bottom = 540.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 1 )
-text = "Join Server"
+[node name="TextureRect" type="TextureRect" parent="Multiplayer_configure"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 960.0
+margin_bottom = 1080.0
+texture = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Username_text_edit" type="LineEdit" parent="Multiplayer_configure"]
-margin_top = 4.0
-margin_right = 1920.0
-margin_bottom = 270.0
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -480.0
+margin_top = 50.0
+margin_right = 480.0
+margin_bottom = 250.0
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )
 align = 1
@@ -58,10 +50,41 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Create_server" type="Button" parent="Multiplayer_configure"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -479.0
+margin_top = 300.0
+margin_right = 481.0
+margin_bottom = 500.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Create Server"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Join_server" type="Button" parent="Multiplayer_configure"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -480.0
+margin_top = 550.0
+margin_right = 480.0
+margin_bottom = 750.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Join Server"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Button" type="Button" parent="Multiplayer_configure"]
-margin_top = 545.0
-margin_right = 1920.0
-margin_bottom = 793.0
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -480.0
+margin_top = 800.0
+margin_right = 480.0
+margin_bottom = 1000.0
 custom_fonts/font = ExtResource( 1 )
 text = "Exit"
 __meta__ = {
@@ -76,9 +99,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -960.0
-margin_top = -180.0
+margin_top = -55.0
 margin_right = 960.0
-margin_bottom = -150.0
+margin_bottom = -25.0
 size_flags_vertical = 6
 custom_fonts/font = ExtResource( 1 )
 align = 1

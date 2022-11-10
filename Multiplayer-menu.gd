@@ -21,14 +21,6 @@ func _ready() -> void:
 		start_game.hide()
 
 func _process(delta):
-	if Input.is_action_just_pressed("Fullscreen") and OS.window_fullscreen == true:
-		yield(get_tree().create_timer(0.1), "timeout")
-		OS.window_fullscreen = false
-		
-	elif Input.is_action_just_pressed("Fullscreen") and OS.window_fullscreen == false:
-		yield(get_tree().create_timer(0.1), "timeout")
-		OS.window_fullscreen = true
-		
 	if get_tree().network_peer != null:
 		if get_tree().get_network_connected_peers().size() >= 1 and get_tree().is_network_server():
 			start_game.show()
