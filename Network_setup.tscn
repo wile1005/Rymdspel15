@@ -111,8 +111,19 @@ __meta__ = {
 }
 
 [node name="Start_game" type="Button" parent="CanvasLayer"]
-margin_right = 351.0
-margin_bottom = 96.0
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -175.5
+margin_top = -196.0
+margin_right = 175.5
+margin_bottom = -100.0
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color_focus = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Start game"
 __meta__ = {
 "_edit_use_anchors_": false
 }

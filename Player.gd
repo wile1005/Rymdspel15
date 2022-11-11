@@ -6,6 +6,7 @@ var hp = 100 setget set_hp
 var velocity = Vector2(0, 0)
 var can_shoot = true
 var is_reloading = false
+var is_stunned = false
 
 var bullet = load("res://Bullet.tscn")
 var username_text = load("res://Username_text.tscn")
@@ -41,15 +42,15 @@ func _process(delta: float) -> void:
 		var x_input = int(Input.is_action_pressed("Right")) - int(Input.is_action_pressed("Left"))
 		var y_input = int(Input.is_action_pressed("Down")) - int(Input.is_action_pressed("Up"))
 		
-		if Input.is_action_pressed("Down"):
-			sprite.texture = load("res://Sprites/Player-down.png")
-		elif(Input.is_action_pressed("Up")):
-			sprite.texture = load("res://Sprites/Player-up.png")
-		elif(Input.is_action_pressed("Right")):
-			sprite.texture = load("res://Sprites/Player-right.png")
-		elif(Input.is_action_pressed("Left")):
-			sprite.texture = load("res://Sprites/Player-left.png")
-		
+		if is_stunned == false:
+			if Input.is_action_pressed("Down"):
+				sprite.texture = load("res://Sprites/Player-down.png")
+			elif(Input.is_action_pressed("Up")):
+				sprite.texture = load("res://Sprites/Player-up.png")
+			elif(Input.is_action_pressed("Right")):
+				sprite.texture = load("res://Sprites/Player-right.png")
+			elif(Input.is_action_pressed("Left")):
+				sprite.texture = load("res://Sprites/Player-left.png")
 		
 		
 		velocity = Vector2(x_input, y_input).normalized()
@@ -142,6 +143,7 @@ func _on_Reload_timer_timeout():
 	is_reloading = false
 
 func _on_Hit_timer_timeout():
+	is_stunned = false
 	modulate = Color(1, 1, 1, 1)
 
 func _on_Hitbox_area_entered(area):
@@ -153,12 +155,19 @@ func _on_Hitbox_area_entered(area):
 
 sync func hit_by_damager(damage):
 	hp -= damage
+	if $AnimationPlayer.is_playing():
+		$AnimationPlayer.stop()
+		$AnimationPlayer.play("Fallen")
+	else:
+		$AnimationPlayer.play("Falling")
 	modulate = Color(5, 0, 0, 1)
+	is_stunned = true
 	hit_timer.start()
 
 sync func destroy() -> void:
 	update_shoot_mode(false)
 	username_text_instance.visible = false
-	visible = false
+	if not is_network_master():
+		visible = false
 	$CollisionShape2D.disabled = true
 	$Hitbox/CollisionShape2D.disabled = true
