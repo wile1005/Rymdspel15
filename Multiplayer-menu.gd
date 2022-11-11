@@ -25,7 +25,7 @@ func _process(delta):
 		if get_tree().get_network_connected_peers().size() >= 1 and get_tree().is_network_server():
 			start_game.show()
 		else:
-			start_game.show()
+			start_game.hide()
 
 func _player_connected(id) -> void:
 	print("Player " + str(id) + " has connected")

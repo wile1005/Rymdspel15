@@ -10,10 +10,11 @@ config_version=4
 
 [application]
 
-config/name="Gymnasieproject"
+config/name="Rymdspel 15"
 run/main_scene="res://Network_setup.tscn"
-boot_splash/image="res://Sprites/Player-down.png"
-config/icon="res://icon.png"
+boot_splash/image="res://Sprites/Icon.png"
+boot_splash/use_filter=false
+config/icon="res://Sprites/Icon.png"
 
 [autoload]
 
