@@ -25,12 +25,15 @@ onready var sprite = $Sprite
 onready var reload_timer = $Reload_timer
 onready var shoot_point = $Rotator/Shoot_point
 onready var hit_timer = $Hit_timer
+onready var escape_menu = $Camera2D/CanvasLayer/Escape_menu
 
 func _ready():
 	get_tree().connect("network_peer_connected", self, "_network_peer_connected")
 	
 	username_text_instance = Global.instance_node_at_location(username_text, Persistent_nodes, global_position)
 	username_text_instance.player_following = self
+	
+	escape_menu.visible = false
 	
 	update_shoot_mode(false)
 
@@ -39,10 +42,19 @@ func _process(delta: float) -> void:
 		username_text_instance.name = "username" + name
 	
 	if is_network_master():
-		var x_input = int(Input.is_action_pressed("Right")) - int(Input.is_action_pressed("Left"))
-		var y_input = int(Input.is_action_pressed("Down")) - int(Input.is_action_pressed("Up"))
+		
+		if Input.is_action_just_pressed("Escape") and escape_menu.visible == false:
+			escape_menu.visible = true
+			is_stunned = true
+		elif Input.is_action_just_pressed("Escape") and escape_menu.visible == true:
+			escape_menu.visible = false
+			is_stunned = false
 		
 		if is_stunned == false:
+			var x_input = int(Input.is_action_pressed("Right")) - int(Input.is_action_pressed("Left"))
+			var y_input = int(Input.is_action_pressed("Down")) - int(Input.is_action_pressed("Up"))
+			velocity = Vector2(x_input, y_input).normalized()
+			
 			if Input.is_action_pressed("Down"):
 				sprite.texture = load("res://Sprites/Player-down.png")
 			elif(Input.is_action_pressed("Up")):
@@ -53,7 +65,7 @@ func _process(delta: float) -> void:
 				sprite.texture = load("res://Sprites/Player-left.png")
 		
 		
-		velocity = Vector2(x_input, y_input).normalized()
+		
 		
 		move_and_slide(velocity * speed)
 		
@@ -143,8 +155,9 @@ func _on_Reload_timer_timeout():
 	is_reloading = false
 
 func _on_Hit_timer_timeout():
-	is_stunned = false
 	modulate = Color(1, 1, 1, 1)
+	yield(get_tree().create_timer(1.0), "timeout")
+	is_stunned = false
 
 func _on_Hitbox_area_entered(area):
 	if get_tree().is_network_server():
@@ -171,3 +184,11 @@ sync func destroy() -> void:
 		visible = false
 	$CollisionShape2D.disabled = true
 	$Hitbox/CollisionShape2D.disabled = true
+
+
+func _on_Backtogame_pressed():
+	escape_menu.visible = false
+	is_stunned = false
+
+func _on_Exit_pressed():
+	get_tree().quit()
