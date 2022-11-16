@@ -1,5 +1,10 @@
 extends Node
 
+var player_master = null
+var ui = null
+
+var alive_players = []
+
 func instance_node_at_location(node: Object, parent: Object, location: Vector2) -> Object:
 	var node_instance = instance_node(node, parent)
 	node_instance.global_position = location

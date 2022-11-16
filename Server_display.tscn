@@ -13,9 +13,6 @@ text = "N/A : 000.000.000"
 align = 1
 valign = 1
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Join_button" type="Button" parent="."]
 anchor_left = 1.0

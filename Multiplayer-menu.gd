@@ -2,11 +2,14 @@ extends Control
 
 var player = load("res://Player.tscn")
 
+var current_spawn_location_instance_number = 1
+var current_player_for_spawn_location_number = null
+
 onready var multiplayer_config_ui = $Multiplayer_configure
 onready var username_text_edit = $Multiplayer_configure/Username_text_edit
 
-onready var device_ip_address = $CanvasLayer/Devic_ip_adress
-onready var start_game = $CanvasLayer/Start_game
+onready var device_ip_address = $Ui/Devic_ip_adress
+onready var start_game = $Ui/Start_game
 
 func _ready() -> void:
 	get_tree().connect("network_peer_connected", self, "_player_connected")
@@ -16,7 +19,15 @@ func _ready() -> void:
 	device_ip_address.text = Network.ip_address
 	
 	if get_tree().network_peer != null:
-		pass
+		multiplayer_config_ui.hide()
+		for player in Persistent_nodes.get_children():
+			if player.is_in_group("Player"):
+				for spawn_location in $Spawn_Locations.get_children():
+					if int(spawn_location.name) == current_spawn_location_instance_number and current_player_for_spawn_location_number != player:
+						player.rpc("update_position", spawn_location.global_position)
+						player.rpc("enable")
+						current_spawn_location_instance_number += 1
+						current_player_for_spawn_location_number = player
 	else:
 		start_game.hide()
 
@@ -85,6 +96,9 @@ sync func switch_to_game() -> void:
 	for child in Persistent_nodes.get_children():
 		if child.is_in_group("Player"):
 			child.update_shoot_mode(true)
+			child.game_start()
+	
+	$Ui/Devic_ip_adress.visible=false
 	
 	get_tree().change_scene("res://Game.tscn")
 

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Bike-horn.mp3-0495893c13f79f191ca0cb40b8a10865.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Bike-horn.mp3"
+dest_files=[ "res://.import/Bike-horn.mp3-0495893c13f79f191ca0cb40b8a10865.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

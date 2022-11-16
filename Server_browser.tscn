@@ -167,8 +167,7 @@ __meta__ = {
 }
 
 [node name="Searching_for_servers" type="Label" parent="Background_panel/VBoxContainer"]
-margin_left = 600.0
-margin_right = 1000.0
+margin_right = 1588.0
 margin_bottom = 70.0
 rect_min_size = Vector2( 0, 70 )
 custom_fonts/font = ExtResource( 1 )

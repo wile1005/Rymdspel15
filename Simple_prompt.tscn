@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Font Large.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Simple_prompt.gd" type="Script" id=2]
+
+[node name="Simple_prompt" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="Panel" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -471.0
+margin_top = -291.5
+margin_right = 471.0
+margin_bottom = 291.5
+
+[node name="Ok" type="Button" parent="Panel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -300.0
+margin_top = -183.0
+margin_right = 300.0
+margin_bottom = -33.0
+custom_fonts/font = ExtResource( 1 )
+text = "Ok"
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -236.5
+margin_top = -139.0
+margin_right = 236.5
+margin_bottom = 39.0
+custom_fonts/font = ExtResource( 1 )
+text = "Simpel prompt"
+align = 1
+valign = 1
+
+[connection signal="pressed" from="Panel/Ok" to="." method="_on_Ok_pressed"]
