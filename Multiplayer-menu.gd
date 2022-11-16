@@ -54,6 +54,7 @@ func _on_Create_server_pressed():
 	if username_text_edit.text != "":
 		Network.current_player_username = username_text_edit
 		multiplayer_config_ui.hide()
+		$TileMap2/Sprite/AnimationPlayer.play("Space_moving")
 		Network.create_server()
 	
 		instance_player(get_tree().get_network_unique_id())
@@ -62,7 +63,7 @@ func _on_Join_server_pressed():
 	if username_text_edit.text != "":
 		multiplayer_config_ui.hide()
 		username_text_edit.hide()
-		
+		$TileMap2/Sprite/AnimationPlayer.play("Space_moving")
 		Global.instance_node(load("res://Server_browser.tscn"), self)
 
 
@@ -72,7 +73,7 @@ func _connected_to_server() -> void:
 	instance_player(get_tree().get_network_unique_id())
 
 func instance_player(id) -> void:
-	var player_instance = Global.instance_node_at_location(player, Persistent_nodes, Vector2(rand_range(0, 1920), rand_range(0,1080)))
+	var player_instance = Global.instance_node_at_location(player, Persistent_nodes, Vector2(rand_range(2527, 2900), rand_range(289,736)))
 	player_instance.name = str(id)
 	player_instance.set_network_master(id)
 	player_instance.username = username_text_edit.text

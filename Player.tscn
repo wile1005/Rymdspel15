@@ -80,6 +80,7 @@ script = ExtResource( 2 )
 layer = 10
 
 [node name="Escape_menu" type="Control" parent="Ui"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -176,11 +177,11 @@ wait_time = 0.03
 autostart = true
 
 [node name="Reload_timer" type="Timer" parent="."]
-wait_time = 0.25
+wait_time = 0.001
 one_shot = true
 
 [node name="Hit_timer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.25
 one_shot = true
 
 [node name="Rotator" type="Node2D" parent="."]

@@ -208,6 +208,7 @@ sync func enable() -> void:
 	update_shoot_mode(false)
 	username_text_instance.visible = true
 	visible = true
+	game_ui.visible = false
 	$CollisionShape2D.disabled = false
 	$Hitbox/CollisionShape2D.disabled = false
 	texture_offset = 0
