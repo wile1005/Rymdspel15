@@ -27,7 +27,7 @@ onready var reload_timer = $Reload_timer
 onready var shoot_point = $Rotator/Shoot_point
 onready var hit_timer = $Hit_timer
 onready var escape_menu = $Ui/Escape_menu
-onready var game_ui = $Ui/Game_ui
+onready var game_ui = $Ui/Hotbar
 
 func _ready():
 	get_tree().connect("network_peer_connected", self, "_network_peer_connected")

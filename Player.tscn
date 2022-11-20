@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Sprites/character-sheet.png" type="Texture" id=1]
-[ext_resource path="res://Player.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://Font Large.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Sprites/Gun.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/Fadeout.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Hotbar-slot.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 2.74194, 4.67742 )
@@ -131,18 +133,218 @@ margin_bottom = 800.0
 custom_fonts/font = ExtResource( 3 )
 text = "Exit"
 
-[node name="Game_ui" type="Control" parent="Ui"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="Panel" type="Panel" parent="Ui/Game_ui"]
+[node name="Hotbar" type="HBoxContainer" parent="Ui"]
+anchor_left = 0.499
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.499
 anchor_bottom = 1.0
-margin_left = 50.0
-margin_top = -123.0
-margin_right = -50.0
-margin_bottom = -40.0
+margin_left = -599.08
+margin_top = -111.0
+margin_right = 200.92
+margin_bottom = -60.9999
+rect_scale = Vector2( 1.5, 1.5 )
+alignment = 1
+
+[node name="Slot_1" type="TextureRect" parent="Ui/Hotbar"]
+margin_left = 132.0
+margin_right = 182.0
+margin_bottom = 50.0
+texture = ExtResource( 6 )
+stretch_mode = 1
+
+[node name="Slot_number" type="TextureRect" parent="Ui/Hotbar/Slot_1"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 11.0
+margin_bottom = 16.0
+
+[node name="TextureRect" type="TextureRect" parent="Ui/Hotbar/Slot_1"]
+margin_left = 9.0
+margin_top = 10.0
+margin_right = 41.0
+margin_bottom = 42.0
+texture = ExtResource( 4 )
+stretch_mode = 1
+
+[node name="Slot_2" type="TextureRect" parent="Ui/Hotbar"]
+margin_left = 186.0
+margin_right = 236.0
+margin_bottom = 50.0
+texture = ExtResource( 6 )
+stretch_mode = 1
+
+[node name="Slot_number" type="TextureRect" parent="Ui/Hotbar/Slot_2"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 11.0
+margin_bottom = 16.0
+
+[node name="TextureRect" type="TextureRect" parent="Ui/Hotbar/Slot_2"]
+margin_left = 9.0
+margin_top = 10.0
+margin_right = 41.0
+margin_bottom = 42.0
+stretch_mode = 1
+
+[node name="Slot_3" type="TextureRect" parent="Ui/Hotbar"]
+margin_left = 240.0
+margin_right = 290.0
+margin_bottom = 50.0
+texture = ExtResource( 6 )
+stretch_mode = 1
+
+[node name="Slot_number" type="TextureRect" parent="Ui/Hotbar/Slot_3"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 11.0
+margin_bottom = 16.0
+
+[node name="TextureRect" type="TextureRect" parent="Ui/Hotbar/Slot_3"]
+margin_left = 9.0
+margin_top = 10.0
+margin_right = 41.0
+margin_bottom = 42.0
+stretch_mode = 1
+
+[node name="Slot_4" type="TextureRect" parent="Ui/Hotbar"]
+margin_left = 294.0
+margin_right = 344.0
+margin_bottom = 50.0
+texture = ExtResource( 6 )
+stretch_mode = 1
+
+[node name="Slot_number" type="TextureRect" parent="Ui/Hotbar/Slot_4"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 11.0
+margin_bottom = 16.0
+
+[node name="TextureRect" type="TextureRect" parent="Ui/Hotbar/Slot_4"]
+margin_left = 9.0
+margin_top = 10.0
+margin_right = 41.0
+margin_bottom = 42.0
+stretch_mode = 1
+
+[node name="Slot_5" type="TextureRect" parent="Ui/Hotbar"]
+margin_left = 348.0
+margin_right = 398.0
+margin_bottom = 50.0
+texture = ExtResource( 6 )
+stretch_mode = 1
+
+[node name="Slot_number" type="TextureRect" parent="Ui/Hotbar/Slot_5"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 11.0
+margin_bottom = 16.0
+
+[node name="TextureRect" type="TextureRect" parent="Ui/Hotbar/Slot_5"]
+margin_left = 9.0
+margin_top = 10.0
+margin_right = 41.0
+margin_bottom = 42.0
+stretch_mode = 1
+
+[node name="Slot_6" type="TextureRect" parent="Ui/Hotbar"]
+margin_left = 402.0
+margin_right = 452.0
+margin_bottom = 50.0
+texture = ExtResource( 6 )
+stretch_mode = 1
+
+[node name="Slot_number" type="TextureRect" parent="Ui/Hotbar/Slot_6"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 11.0
+margin_bottom = 16.0
+
+[node name="TextureRect" type="TextureRect" parent="Ui/Hotbar/Slot_6"]
+margin_left = 9.0
+margin_top = 10.0
+margin_right = 41.0
+margin_bottom = 42.0
+stretch_mode = 1
+
+[node name="Slot_7" type="TextureRect" parent="Ui/Hotbar"]
+margin_left = 456.0
+margin_right = 506.0
+margin_bottom = 50.0
+texture = ExtResource( 6 )
+stretch_mode = 1
+
+[node name="Slot_number" type="TextureRect" parent="Ui/Hotbar/Slot_7"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 11.0
+margin_bottom = 16.0
+
+[node name="TextureRect" type="TextureRect" parent="Ui/Hotbar/Slot_7"]
+margin_left = 9.0
+margin_top = 10.0
+margin_right = 41.0
+margin_bottom = 42.0
+stretch_mode = 1
+
+[node name="Slot_8" type="TextureRect" parent="Ui/Hotbar"]
+margin_left = 510.0
+margin_right = 560.0
+margin_bottom = 50.0
+texture = ExtResource( 6 )
+stretch_mode = 1
+
+[node name="Slot_number" type="TextureRect" parent="Ui/Hotbar/Slot_8"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 11.0
+margin_bottom = 16.0
+
+[node name="TextureRect" type="TextureRect" parent="Ui/Hotbar/Slot_8"]
+margin_left = 9.0
+margin_top = 10.0
+margin_right = 41.0
+margin_bottom = 42.0
+stretch_mode = 1
+
+[node name="Slot_9" type="TextureRect" parent="Ui/Hotbar"]
+margin_left = 564.0
+margin_right = 614.0
+margin_bottom = 50.0
+texture = ExtResource( 6 )
+stretch_mode = 1
+
+[node name="Slot_number" type="TextureRect" parent="Ui/Hotbar/Slot_9"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 11.0
+margin_bottom = 16.0
+
+[node name="TextureRect" type="TextureRect" parent="Ui/Hotbar/Slot_9"]
+margin_left = 9.0
+margin_top = 10.0
+margin_right = 41.0
+margin_bottom = 42.0
+stretch_mode = 1
+
+[node name="Slot_0" type="TextureRect" parent="Ui/Hotbar"]
+margin_left = 618.0
+margin_right = 668.0
+margin_bottom = 50.0
+texture = ExtResource( 6 )
+stretch_mode = 1
+
+[node name="Slot_number" type="TextureRect" parent="Ui/Hotbar/Slot_0"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 11.0
+margin_bottom = 16.0
+
+[node name="TextureRect" type="TextureRect" parent="Ui/Hotbar/Slot_0"]
+margin_left = 9.0
+margin_top = 10.0
+margin_right = 41.0
+margin_bottom = 42.0
+stretch_mode = 1
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

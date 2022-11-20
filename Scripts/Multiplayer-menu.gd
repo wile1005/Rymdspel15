@@ -1,5 +1,7 @@
 extends Control
 
+export var Debug_Mode = false
+
 var player = load("res://Player.tscn")
 
 var current_spawn_location_instance_number = 1
@@ -34,6 +36,8 @@ func _ready() -> void:
 func _process(delta):
 	if get_tree().network_peer != null:
 		if get_tree().get_network_connected_peers().size() >= 1 and get_tree().is_network_server():
+			start_game.show()
+		elif(Debug_Mode==true):
 			start_game.show()
 		else:
 			start_game.hide()

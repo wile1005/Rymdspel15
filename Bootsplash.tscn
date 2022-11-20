@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Bootsplash.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Bootsplash.gd" type="Script" id=1]
 [ext_resource path="res://Font Extra Large.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Sprites/Background.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Icon.png" type="Texture" id=4]
@@ -41,6 +41,7 @@ tracks/0/keys = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+bootsplash_toggle = false
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 1.0
