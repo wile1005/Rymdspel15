@@ -38,6 +38,7 @@ func _ready():
 	
 	escape_menu.visible = false
 	game_ui.visible = false
+	hotbar_select(1)
 	
 	update_shoot_mode(false)
 	Global.alive_players.append(self)
@@ -90,13 +91,13 @@ func _process(delta: float) -> void:
 				velocity = Vector2(x_input, y_input).normalized()
 				
 				if Input.is_action_pressed("Down"):
-					sprite.region_rect = Rect2( 0+texture_offset, 0, 32, 32)
+					sprite_changer(Rect2( 0+texture_offset, 0, 32, 32))
 				elif(Input.is_action_pressed("Up")):
-					sprite.region_rect = Rect2( 32+texture_offset, 32, 32, 32)
+					sprite_changer(Rect2( 32+texture_offset, 32, 32, 32))
 				elif(Input.is_action_pressed("Right")):
-					sprite.region_rect = Rect2( 32+texture_offset, 0, 32, 32)
+					 sprite_changer(Rect2( 32+texture_offset, 0, 32, 32))
 				elif(Input.is_action_pressed("Left")):
-					sprite.region_rect = Rect2( 0+texture_offset, 32, 32, 32)
+					sprite_changer(Rect2( 0+texture_offset, 32, 32, 32))
 			
 			$Camera2D.current = true
 			
@@ -104,10 +105,11 @@ func _process(delta: float) -> void:
 			
 			$Rotator.look_at(get_global_mouse_position())
 			
-			if Input.is_action_pressed("click") and can_shoot and not is_reloading:
+			if Input.is_action_pressed("click") and can_shoot and not is_reloading and $Ui/Hotbar.get_node("Slot_"+str(selected_slot)).get_node("Slot_item").texture == load("res://Sprites/Gun.png"):
 				rpc("instance_bullet", get_tree().get_network_unique_id())
 				is_reloading = true
 				reload_timer.start()
+			
 			
 		else:
 			$Rotator.rotation_degrees = lerp($Rotator.rotation_degrees, puppet_rotation, delta * 8)
@@ -132,6 +134,10 @@ func hotbar_select(new_value):
 			$Ui/Hotbar.get_node("Slot_"+str(number)).texture = load("res://Sprites/Hotbar-slot-selected.png")
 		else:
 			$Ui/Hotbar.get_node("Slot_"+str(number)).texture = load("res://Sprites/Hotbar-slot.png")
+
+sync func sprite_changer(new_value):
+	sprite.region_rect = new_value
+
 
 func puppet_position_set(new_value) -> void:
 	puppet_position = new_value
@@ -211,6 +217,7 @@ func _on_Hit_timer_timeout():
 	modulate = Color(1, 1, 1, 1)
 	yield(get_tree().create_timer(1.0), "timeout")
 	is_stunned = false
+	can_shoot = true
 
 func _on_Hitbox_area_entered(area):
 	if get_tree().has_network_peer():
@@ -229,6 +236,7 @@ sync func hit_by_damager(damage):
 		$AnimationPlayer.play("Falling")
 	modulate = Color(5, 0, 0, 1)
 	is_stunned = true
+	can_shoot = false
 	hit_timer.start()
 
 sync func enable() -> void:
