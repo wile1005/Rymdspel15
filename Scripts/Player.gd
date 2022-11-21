@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 const speed = 200
 
+var selected_slot = 1
 var hp = 100 setget set_hp
 var velocity = Vector2(0, 0)
 var can_shoot = true
@@ -53,6 +54,27 @@ func _process(delta: float) -> void:
 	if get_tree().has_network_peer():
 		if is_network_master():
 			
+			if Input.is_action_just_pressed("Slot_0"):
+				hotbar_select(0)
+			elif Input.is_action_just_pressed("Slot_1"):
+				hotbar_select(1)
+			elif Input.is_action_just_pressed("Slot_2"):
+				hotbar_select(2)
+			elif Input.is_action_just_pressed("Slot_3"):
+				hotbar_select(3)
+			elif Input.is_action_just_pressed("Slot_4"):
+				hotbar_select(4)
+			elif Input.is_action_just_pressed("Slot_5"):
+				hotbar_select(5)
+			elif Input.is_action_just_pressed("Slot_6"):
+				hotbar_select(6)
+			elif Input.is_action_just_pressed("Slot_7"):
+				hotbar_select(7)
+			elif Input.is_action_just_pressed("Slot_8"):
+				hotbar_select(8)
+			elif Input.is_action_just_pressed("Slot_9"):
+				hotbar_select(9)
+			
 			if Input.is_action_just_pressed("Escape") and escape_menu.visible == false:
 				escape_menu.visible = true
 				is_stunned = true
@@ -101,6 +123,15 @@ func _process(delta: float) -> void:
 		if get_tree().has_network_peer():
 			if get_tree().is_network_server():
 				rpc("destroy")
+
+func hotbar_select(new_value):
+	selected_slot = new_value
+	
+	for number in $Ui/Hotbar.get_child_count():
+		if selected_slot==number:
+			$Ui/Hotbar.get_node("Slot_"+str(number)).texture = load("res://Sprites/Hotbar-slot-selected.png")
+		else:
+			$Ui/Hotbar.get_node("Slot_"+str(number)).texture = load("res://Sprites/Hotbar-slot.png")
 
 func puppet_position_set(new_value) -> void:
 	puppet_position = new_value

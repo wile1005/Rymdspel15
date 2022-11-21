@@ -21,6 +21,7 @@ func _ready() -> void:
 	device_ip_address.text = Network.ip_address
 	
 	if get_tree().network_peer != null:
+		$TileMap2/Sprite/AnimationPlayer.play("Space_moving")
 		multiplayer_config_ui.hide()
 		for player in Persistent_nodes.get_children():
 			if player.is_in_group("Player"):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Sprites/character-sheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Sprites/Gun.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/Fadeout.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Hotbar-slot.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Hotbar-slot-selected.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 2.74194, 4.67742 )
@@ -149,7 +150,7 @@ alignment = 1
 margin_left = 132.0
 margin_right = 182.0
 margin_bottom = 50.0
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 stretch_mode = 1
 
 [node name="Slot_number" type="TextureRect" parent="Ui/Hotbar/Slot_1"]
@@ -157,6 +158,9 @@ margin_left = 1.0
 margin_top = 1.0
 margin_right = 11.0
 margin_bottom = 16.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TextureRect" type="TextureRect" parent="Ui/Hotbar/Slot_1"]
 margin_left = 9.0
@@ -165,6 +169,9 @@ margin_right = 41.0
 margin_bottom = 42.0
 texture = ExtResource( 4 )
 stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Slot_2" type="TextureRect" parent="Ui/Hotbar"]
 margin_left = 186.0
@@ -185,6 +192,9 @@ margin_top = 10.0
 margin_right = 41.0
 margin_bottom = 42.0
 stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Slot_3" type="TextureRect" parent="Ui/Hotbar"]
 margin_left = 240.0
