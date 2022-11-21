@@ -126,6 +126,15 @@ func _process(delta: float) -> void:
 			if get_tree().is_network_server():
 				rpc("destroy")
 
+func item_picked(item):
+	item 
+	
+	for number in $Ui/Hotbar.get_child_count():
+		if $Ui/Hotbar.get_node("Slot_"+str(number)).get_node("Slot_item").texture != load("res://Sprites/Gun.png"):
+			$Ui/Hotbar.get_node("Slot_"+str(number)).get_node("Slot_item").texture = load("res://Sprites/Gun.png")
+			break
+
+
 func hotbar_select(new_value):
 	selected_slot = new_value
 	
@@ -137,6 +146,7 @@ func hotbar_select(new_value):
 
 sync func sprite_changer(new_value):
 	sprite.region_rect = new_value
+
 
 
 func puppet_position_set(new_value) -> void:
@@ -224,8 +234,11 @@ func _on_Hitbox_area_entered(area):
 		if get_tree().is_network_server():
 			if area.is_in_group("Player_damager") and area.get_parent().player_owner != int(name):
 				rpc("hit_by_damager", area.get_parent().damage)
-				
 				area.get_parent().rpc("destroy")
+				
+			if area.is_in_group("Item"):
+				area.get_parent().rpc("destroy")
+				item_picked(area.get_parent().item)
 
 sync func hit_by_damager(damage):
 	hp -= damage
@@ -240,6 +253,8 @@ sync func hit_by_damager(damage):
 	hit_timer.start()
 
 sync func enable() -> void:
+	for number in $Ui/Hotbar.get_child_count():
+		$Ui/Hotbar.get_node("Slot_"+str(number)).get_node("Slot_item").texture = null
 	hp = 100
 	can_shoot = false
 	is_stunned = false
@@ -261,6 +276,8 @@ sync func enable() -> void:
 		Global.alive_players.append(self)
 
 sync func destroy() -> void:
+	for number in $Ui/Hotbar.get_child_count():
+		$Ui/Hotbar.get_node("Slot_"+str(number)).get_node("Slot_item").texture = null
 	can_shoot = false
 	is_stunned = false
 	modulate.a = 0.5

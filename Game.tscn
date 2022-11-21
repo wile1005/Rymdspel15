@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Floor-1.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Scripts/Game_over.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/Game_Ui.gd" type="Script" id=8]
 [ext_resource path="res://Sprites/Background.png" type="Texture" id=9]
+[ext_resource path="res://Gun.tscn" type="PackedScene" id=10]
 
 [sub_resource type="StreamTexture" id=52]
 load_path = "res://.import/Wallsheet.png-eb7631dac03ef2a617fc833a3c1a0229.stex"
@@ -394,6 +395,9 @@ tile_data = PoolIntArray( 196639, 8, 262160, 196640, 8, 327683, 196641, 9, 0, 19
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2( 0.5, 0.5 )
 script = ExtResource( 4 )
+
+[node name="Gun" parent="." instance=ExtResource( 10 )]
+position = Vector2( 1723, 1326 )
 
 [node name="Spawn_Locations" type="Node" parent="."]
 
