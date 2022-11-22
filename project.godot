@@ -12,7 +12,7 @@ config_version=4
 
 config/name="Rymdspel 15"
 run/main_scene="res://Bootsplash.tscn"
-boot_splash/image="res://Sounds/Bike-horn.mp3"
+boot_splash/image="res://Sprites/Icon.png"
 boot_splash/use_filter=false
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://Sprites/Icon.png"

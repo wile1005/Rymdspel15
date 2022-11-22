@@ -91,13 +91,13 @@ func _process(delta: float) -> void:
 				velocity = Vector2(x_input, y_input).normalized()
 				
 				if Input.is_action_pressed("Down"):
-					sprite_changer(Rect2( 0+texture_offset, 0, 32, 32))
+					rpc("sprite_changer",Rect2( 0+texture_offset, 0, 32, 32))
 				elif(Input.is_action_pressed("Up")):
-					sprite_changer(Rect2( 32+texture_offset, 32, 32, 32))
+					rpc("sprite_changer", Rect2( 32+texture_offset, 32, 32, 32))
 				elif(Input.is_action_pressed("Right")):
-					 sprite_changer(Rect2( 32+texture_offset, 0, 32, 32))
+					 rpc("sprite_changer",Rect2( 32+texture_offset, 0, 32, 32))
 				elif(Input.is_action_pressed("Left")):
-					sprite_changer(Rect2( 0+texture_offset, 32, 32, 32))
+					rpc("sprite_changer",Rect2( 0+texture_offset, 32, 32, 32))
 			
 			$Camera2D.current = true
 			
@@ -126,12 +126,14 @@ func _process(delta: float) -> void:
 			if get_tree().is_network_server():
 				rpc("destroy")
 
-func item_picked(item):
+sync func item_picked(item):
 	item 
 	
 	for number in $Ui/Hotbar.get_child_count():
-		if $Ui/Hotbar.get_node("Slot_"+str(number)).get_node("Slot_item").texture != load("res://Sprites/Gun.png"):
+		if $Ui/Hotbar.get_node("Slot_"+str(number)).get_node("Slot_item").texture == null and number != 0:
 			$Ui/Hotbar.get_node("Slot_"+str(number)).get_node("Slot_item").texture = load("res://Sprites/Gun.png")
+			if $Ui/Hotbar.get_node("Slot_9").get_node("Slot_item").texture == load("res://Sprites/Gun.png"):
+				$Ui/Hotbar.get_node("Slot_"+str(number)).get_node("Slot_item").texture = load("res://Sprites/Gun.png")
 			break
 
 
@@ -238,7 +240,7 @@ func _on_Hitbox_area_entered(area):
 				
 			if area.is_in_group("Item"):
 				area.get_parent().rpc("destroy")
-				item_picked(area.get_parent().item)
+				rpc("item_picked", area.get_parent().item)
 
 sync func hit_by_damager(damage):
 	hp -= damage
